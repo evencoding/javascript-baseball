@@ -13,6 +13,10 @@ const getRandomNumbers = (size, start, end) => {
   return randomNumbers.join('');
 };
 
+// 모두 함수 이름만 봤을 때는 특정 조건을 만족하는지 판별해 주는 함수 같은데,
+// 실제로는 특정 조건을 만족하는지의 여부보다는
+// 만족하지 않을 경우에만 에러를 던지는 함수
+// throwErrorIfInvalidRangeNumber()
 const isValidRangeNumber = (userNumbers) => {
   const regex = /^[1-9]{3}$/;
   if (!regex.test(userNumbers)) {
@@ -20,6 +24,7 @@ const isValidRangeNumber = (userNumbers) => {
   }
 };
 
+// throwErrorIfHaveSameNumber()
 const haveSameNumber = (userNumbers) => {
   if (new Set([...userNumbers]).size < 3) {
     throw ERROR_MESSAGE.duplicate;
@@ -38,6 +43,9 @@ const getGameResultMessage = ({ strike, ball }) => {
   if (strike === 0 && ball === 0) {
     return '낫싱';
   }
+  // https://github.com/airbnb/javascript#comparison--shortcuts
+  // Use shortcuts for booleans, but explicit comparisons for strings and numbers.
+  // strike > 0 && ball > 0 으로 갔어야 함
   if (strike && ball) {
     return `${ball}볼 ${strike}스트라이크`;
   }
