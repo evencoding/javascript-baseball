@@ -7,6 +7,7 @@ class BaseballGame {
   constructor() {
     this.#randomNumbers = generateRandomNumbers();
     this.#strikeCount = 0;
+    console.log(this.#randomNumbers);
   }
 
   getStrike(numbers) {

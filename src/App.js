@@ -4,9 +4,12 @@ const Controller = require('./controller');
 class App {
   #controller;
 
-  play() {
+  constructor() {
     this.#controller = new Controller();
-    this.#controller.gameStart();
+  }
+
+  play() {
+    Controller.gameStart();
   }
 }
 

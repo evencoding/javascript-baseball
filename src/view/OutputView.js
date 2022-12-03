@@ -11,7 +11,7 @@ const OutputView = {
 
   printResult({ strike, ball }) {
     if (strike > 0 && ball > 0) Console.print(`볼${ball} 스트라이크${strike}`);
-    else if (strike + ball === 0) Console.print('낫싱');
+    else if (strike > 0 && ball > 0) Console.print('낫싱');
     else if (strike > 0) Console.print(`스트라이크${strike}`);
     else if (ball > 0) Console.print(`볼${ball}`);
   },

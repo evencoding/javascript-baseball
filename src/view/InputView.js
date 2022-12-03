@@ -1,20 +1,15 @@
 const { Console } = require('@woowacourse/mission-utils');
-const Controller = require('../controller');
+const Controller = require('../Controller');
 const Validator = require('../Validator');
 
 const InputView = {
-  controller: new Controller(),
-
   askNumbers() {
-    Console.readLine(
-      '숫자를 입력해주세요 : ',
-      this.randomNumbersHandler.bind(this)
-    );
+    Console.readLine('숫자를 입력해주세요 : ', this.numbersHandler.bind(this));
   },
 
-  randomNumbersHandler(numbers) {
+  numbersHandler(numbers) {
     Validator(numbers);
-    this.controller.printResult(numbers);
+    Controller.printResult(numbers.split(''));
   },
 
   askRestartOrExit() {
@@ -26,8 +21,7 @@ const InputView = {
 
   restartOrExitHandler(answer) {
     Validator(answer);
-    (answer === '1' && this.controller.gameStart()) ||
-      this.controller.gameExit();
+    (answer === '1' && Controller.gameStart()) || Controller.gameExit();
   },
 };
 
