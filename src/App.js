@@ -1,5 +1,4 @@
-// const MissionUtils = require('@woowacourse/mission-utils');
-const Controller = require('./controller');
+const Controller = require('./controller/Controller');
 
 class App {
   #controller;
@@ -9,7 +8,7 @@ class App {
   }
 
   play() {
-    Controller.gameStart();
+    this.#controller.gameStart();
   }
 }
 
