@@ -35,6 +35,8 @@ class BaseballController {
 
   noticeUserWin() {
     OutputView.printWinMessage();
+
+    InputView.askRestartOrExit(this.handleRestartOrExit.bind(this));
   }
 
   handleRestartOrExit(command) {}
