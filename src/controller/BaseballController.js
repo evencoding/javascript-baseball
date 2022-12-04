@@ -1,4 +1,5 @@
 const BaseballGame = require('../service/BaseballGame');
+const Validator = require('../Validator');
 const InputView = require('../views/InputView');
 const OutputView = require('../views/OutputView');
 
@@ -15,7 +16,9 @@ class BaseballController {
     InputView.askNumbers(this.handleUserNumbers.bind(this));
   }
 
-  handleUserNumbers(userNumbers) {}
+  handleUserNumbers(userNumbers) {
+    Validator.throwErrorIfInvalidNumbers(userNumbers);
+  }
 }
 
 module.exports = BaseballController;
