@@ -18,6 +18,14 @@ class BaseballController {
 
   handleUserNumbers(userNumbers) {
     Validator.throwErrorIfInvalidNumbers(userNumbers);
+
+    this.printResult(userNumbers.split('').map(Number));
+  }
+
+  printResult(userNumbers) {
+    const ball = this.#baseball.getBallCount(userNumbers);
+    console.log(ball);
+    const strike = this.#baseball.getStrikeCount(userNumbers);
   }
 }
 
