@@ -1,5 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
 const BaseballGame = require('../BaseballGame');
+const { GAME_VALUE, COMMAND } = require('../constants');
 const Validator = require('../Validator');
 const InputView = require('../views/InputView');
 const OutputView = require('../views/OutputView');
@@ -29,7 +30,7 @@ class BaseballController {
 
     OutputView.printResult({ strike, ball });
 
-    strike === 3
+    strike === GAME_VALUE.LENGTH
       ? this.noticeUserWin()
       : InputView.askNumbers(this.handleUserNumbers.bind(this));
   }
@@ -43,7 +44,7 @@ class BaseballController {
   handleRestartOrExit(command) {
     Validator.throwErrorIfInvalidCommand(command);
 
-    command === '1' ? this.restartGame() : this.exitGame();
+    command === COMMAND.RESTART ? this.restartGame() : this.exitGame();
   }
 
   restartGame() {
