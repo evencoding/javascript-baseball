@@ -11,7 +11,7 @@ const Validator = {
     if (!regex.test(userNumbers)) {
       this.throwError(ERROR_MESSAGE.INVALID_NUMBER);
     }
-    if (new Set(userNumbers.split('')).size < 3) {
+    if (new Set(userNumbers).size < 3) {
       this.throwError(ERROR_MESSAGE.DUPLICATED_NUMBER);
     }
   },

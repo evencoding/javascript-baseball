@@ -25,7 +25,7 @@ class BaseballController {
   handleUserNumbers(userNumbers) {
     Validator.throwErrorIfInvalidNumbers(userNumbers);
 
-    this.printResult(userNumbers.split('').map(Number));
+    this.printResult([...userNumbers].map(Number));
   }
 
   printResult(userNumbers) {
