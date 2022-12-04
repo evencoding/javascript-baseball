@@ -1,3 +1,4 @@
+const { Console } = require('@woowacourse/mission-utils');
 const BaseballGame = require('../service/BaseballGame');
 const Validator = require('../Validator');
 const InputView = require('../views/InputView');
@@ -41,6 +42,17 @@ class BaseballController {
 
   handleRestartOrExit(command) {
     Validator.throwErrorIfInvalidCommand(command);
+
+    command === '1' ? this.restartGame() : this.exitGame();
+  }
+
+  restartGame() {
+    this.#baseball = new BaseballGame();
+    InputView.askNumbers(this.handleUserNumbers.bind(this));
+  }
+
+  exitGame() {
+    Console.close();
   }
 }
 

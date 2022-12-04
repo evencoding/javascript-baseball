@@ -31,8 +31,8 @@
     - [x] 승리 조건을 달성했다면 게임 종료 메시지를 출력한다
       - [x] 재시작을 묻는다 - InputView
         - [x] 입력받은 재시작 값에 대한 예외 처리 - Validator
-        - [] 게임을 재시작한다 - Controller
-        - [] 게임을 종료한다 - Controller
+        - [x] 게임을 재시작한다 - Controller
+        - [x] 게임을 종료한다 - Controller
 
 ## 예외 처리
 
