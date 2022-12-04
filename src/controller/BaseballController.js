@@ -1,4 +1,5 @@
 const BaseballGame = require('../service/BaseballGame');
+const InputView = require('../views/InputView');
 const OutputView = require('../views/OutputView');
 
 class BaseballController {
@@ -10,7 +11,11 @@ class BaseballController {
 
   gameStart() {
     OutputView.printGameStartMessage();
+
+    InputView.askNumbers(this.handleUserNumbers.bind(this));
   }
+
+  handleUserNumbers(userNumbers) {}
 }
 
 module.exports = BaseballController;
