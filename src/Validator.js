@@ -5,7 +5,7 @@ const Validator = {
 
   throwErrorIfInvalidNumbers(userNumbers) {
     const regex = /^[1-9]{3}$/;
-    throwErrorIfIncludesBlank(userNumbers);
+    this.throwErrorIfIncludesBlank(userNumbers);
     if (!regex.test(userNumbers)) {
       this.throwError('1부터 9까지의 수 3개를 입력해주세요.');
     }
@@ -16,7 +16,7 @@ const Validator = {
 
   throwErrorIfInvalidCommand(command) {
     const regex = /^[12]$/;
-    throwErrorIfIncludesBlank(command);
+    this.throwErrorIfIncludesBlank(command);
     if (!regex.test(command)) {
       this.throwError('1 또는 2를 입력해주세요.');
     }

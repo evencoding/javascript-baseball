@@ -1,4 +1,4 @@
-const { generateRandomNumbers } = require('../GenerateRandomNumbers');
+const { generateRandomNumbers } = require('./GenerateRandomNumbers');
 
 class BaseballGame {
   #computerNumbers;

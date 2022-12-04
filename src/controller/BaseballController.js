@@ -1,5 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
-const BaseballGame = require('../service/BaseballGame');
+const BaseballGame = require('../BaseballGame');
 const Validator = require('../Validator');
 const InputView = require('../views/InputView');
 const OutputView = require('../views/OutputView');
