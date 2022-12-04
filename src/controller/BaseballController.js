@@ -7,18 +7,23 @@ const OutputView = require('../views/OutputView');
 
 class BaseballController {
   #baseball;
+  #commandHandler;
 
   constructor() {
     this.#baseball = new BaseballGame();
+    this.#commandHandler = {
+      [COMMAND.RESTART]: this.restartGame.bind(this),
+      [COMMAND.EXIT]: this.exitGame.bind(this),
+    };
   }
 
   gameStart() {
     OutputView.printGameStartMessage();
 
-    this.askNumbers();
+    this.inputNumbers();
   }
 
-  askNumbers() {
+  inputNumbers() {
     InputView.askNumbers(this.handleUserNumbers.bind(this));
   }
 
@@ -34,25 +39,33 @@ class BaseballController {
 
     OutputView.printResult({ strike, ball });
 
-    strike === GAME_VALUE.LENGTH ? this.noticeUserWin() : this.askNumbers();
+    if (strike === GAME_VALUE.LENGTH) {
+      this.noticeUserWin();
+      return;
+    }
+    this.inputNumbers();
   }
 
   noticeUserWin() {
     OutputView.printWinMessage();
 
+    this.inputRestartOrExit();
+  }
+
+  inputRestartOrExit() {
     InputView.askRestartOrExit(this.handleRestartOrExit.bind(this));
   }
 
   handleRestartOrExit(command) {
     Validator.throwErrorIfInvalidCommand(command);
 
-    command === COMMAND.RESTART ? this.restartGame() : this.exitGame();
+    this.#commandHandler(command)();
   }
 
   restartGame() {
     this.#baseball = new BaseballGame();
 
-    this.askNumbers();
+    this.inputNumbers();
   }
 
   exitGame() {
