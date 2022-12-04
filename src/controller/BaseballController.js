@@ -15,6 +15,10 @@ class BaseballController {
   gameStart() {
     OutputView.printGameStartMessage();
 
+    this.askNumbers();
+  }
+
+  askNumbers() {
     InputView.askNumbers(this.handleUserNumbers.bind(this));
   }
 
@@ -30,9 +34,7 @@ class BaseballController {
 
     OutputView.printResult({ strike, ball });
 
-    strike === GAME_VALUE.LENGTH
-      ? this.noticeUserWin()
-      : InputView.askNumbers(this.handleUserNumbers.bind(this));
+    strike === GAME_VALUE.LENGTH ? this.noticeUserWin() : this.askNumbers();
   }
 
   noticeUserWin() {
@@ -49,7 +51,8 @@ class BaseballController {
 
   restartGame() {
     this.#baseball = new BaseballGame();
-    InputView.askNumbers(this.handleUserNumbers.bind(this));
+
+    this.askNumbers();
   }
 
   exitGame() {
