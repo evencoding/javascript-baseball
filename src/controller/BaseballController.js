@@ -23,9 +23,8 @@ class BaseballController {
   }
 
   printResult(userNumbers) {
-    const ball = this.#baseball.getBallCount(userNumbers);
-    console.log(ball);
     const strike = this.#baseball.getStrikeCount(userNumbers);
+    const ball = this.#baseball.getBallCount({ userNumbers, strike });
   }
 }
 

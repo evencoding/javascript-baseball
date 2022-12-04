@@ -8,13 +8,19 @@ class BaseballGame {
     console.log(this.#computerNumbers);
   }
 
-  getBallCount(userNumbers) {
-    return userNumbers.filter((number) =>
-      this.#computerNumbers.includes(number)
-    ).length;
+  getStrikeCount(userNumbers) {
+    return userNumbers.filter((number, index) => {
+      return number === this.#computerNumbers[index];
+    }).length;
   }
 
-  getStrikeCount(userNumbers) {}
+  getBallCount({ userNumbers, strike }) {
+    const bothHaveNumbersCount = userNumbers.filter((number) => {
+      return this.#computerNumbers.includes(number);
+    }).length;
+
+    return bothHaveNumbersCount - strike;
+  }
 }
 
 module.exports = BaseballGame;
