@@ -39,7 +39,9 @@ class BaseballController {
     InputView.askRestartOrExit(this.handleRestartOrExit.bind(this));
   }
 
-  handleRestartOrExit(command) {}
+  handleRestartOrExit(command) {
+    Validator.throwErrorIfInvalidCommand(command);
+  }
 }
 
 module.exports = BaseballController;
