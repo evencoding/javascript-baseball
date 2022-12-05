@@ -9,10 +9,10 @@ const GenerateRandomNumbers = {
         GAME_VALUE.MIN_NUMBER,
         GAME_VALUE.MAX_NUMBER
       );
-      computer.push(random);
+      computer.add(random);
     }
 
-    return computer;
+    return [...computer];
   },
 };
 

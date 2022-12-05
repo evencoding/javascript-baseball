@@ -59,7 +59,7 @@ class BaseballController {
   handleRestartOrExit(command) {
     Validator.throwErrorIfInvalidCommand(command);
 
-    this.#commandHandler(command)();
+    this.#commandHandler[command]();
   }
 
   restartGame() {
