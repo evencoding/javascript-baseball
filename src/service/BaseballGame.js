@@ -9,7 +9,6 @@ class BaseballGame {
 
   constructor() {
     this.#computerNumbers = generateRandomNumbers();
-    console.log(this.#computerNumbers);
   }
 
   getResult(numbers) {
