@@ -1,15 +1,7 @@
-const BaseballController = require('./controller/BaseballController');
-
 class App {
-  #baseballCtrl;
+  constructor() {}
 
-  constructor() {
-    this.#baseballCtrl = new BaseballController();
-  }
-
-  play() {
-    this.#baseballCtrl.gameStart();
-  }
+  play() {}
 }
 
 const app = new App();
