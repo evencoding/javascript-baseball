@@ -1,5 +1,9 @@
+const OutputView = require('../views/OutputView');
+
 class BaseballController {
-  startGame() {}
+  startGame() {
+    OutputView.printStartMessage();
+  }
 }
 
 module.exports = BaseballController;
