@@ -1,3 +1,5 @@
+const { Console } = require('@woowacourse/mission-utils');
+
 const InputView = require('../views/InputView');
 const OutputView = require('../views/OutputView');
 
@@ -7,6 +9,17 @@ const FEATURES = {
 };
 
 class SubwayController {
+  mainFeatureHandler = {
+    1: this.#randerRoutePage.bind(this),
+    Q: this.#exit.bind(this),
+  };
+
+  routeFeatureHandler = {
+    1: this.#inputStartStation.bind(this),
+    2: this.#inputStartStation.bind(this),
+    B: this.randerMainPage.bind(this),
+  };
+
   randerMainPage() {
     OutputView.printMainPage();
     this.#inputFeature(FEATURES.MAIN);
@@ -23,7 +36,7 @@ class SubwayController {
   #validateMainFeature(feature) {
     // validate feature
 
-    this.#randerRoutePage();
+    this.mainFeatureHandler[feature]();
   }
 
   #randerRoutePage() {
@@ -35,7 +48,7 @@ class SubwayController {
   #validateRouteFeature(feature) {
     // validate feature
 
-    this.#inputStartStation();
+    this.routeFeatureHandler[feature]();
   }
 
   #inputStartStation() {
@@ -57,6 +70,10 @@ class SubwayController {
     // validate
 
     console.log(station);
+  }
+
+  #exit() {
+    Console.close();
   }
 }
 
