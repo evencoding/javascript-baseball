@@ -1,6 +1,7 @@
 const MESSAGE = {
   NOT_NUMBER: '1~9 사이의 세자리 숫자를 입력해야 합니다.',
   HAS_DUPLICATE_NUMBER: '중복되지 않는 세자리 숫자를 입력해야 합니다.',
+  INVALID_COMMAND: '1 또는 2를 입력해야 합니다.',
 };
 
 const Validator = {
@@ -10,6 +11,11 @@ const Validator = {
     if (new Set(numbers).size !== 3) {
       throw new Error(MESSAGE.HAS_DUPLICATE_NUMBER);
     }
+  },
+
+  throwErrorIfInvalidCommand(command) {
+    const regex = /^[12]$/;
+    if (!regex.test(command)) throw new Error(MESSAGE.INVALID_COMMAND);
   },
 };
 

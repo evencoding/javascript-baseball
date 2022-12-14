@@ -57,7 +57,9 @@ class BaseballController {
     InputView.askRetryCommand(this.#validateRetryCommand.bind(this));
   }
 
-  #validateRetryCommand(command) {}
+  #validateRetryCommand(command) {
+    Validator.throwErrorIfInvalidCommand(command);
+  }
 }
 
 module.exports = BaseballController;
