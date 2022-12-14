@@ -22,6 +22,12 @@ class SubwayController {
 
   #validateMainFeature(feature) {
     console.log(feature);
+
+    this.#randerRoutePage();
+  }
+
+  #randerRoutePage() {
+    OutputView.printRoutePage();
   }
 
   #validateRouteFeature(feature) {}
