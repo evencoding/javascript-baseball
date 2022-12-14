@@ -19,6 +19,11 @@ class BaseballController {
     [false]: this.#inputNumbers.bind(this),
   };
 
+  commandHandler = {
+    1: this.#restart.bind(this),
+    2: this.#exitGame.bind(this),
+  };
+
   startGame() {
     OutputView.printStartMessage();
 
@@ -59,6 +64,17 @@ class BaseballController {
 
   #validateRetryCommand(command) {
     Validator.throwErrorIfInvalidCommand(command);
+
+    this.commandHandler[command]();
+  }
+
+  #restart() {
+    this.#baseballGame = new BaseballGame();
+    this.#inputNumbers();
+  }
+
+  #exitGame() {
+    Console.close();
   }
 }
 
