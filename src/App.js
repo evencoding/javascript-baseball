@@ -1,7 +1,15 @@
-class App {
-  constructor() {}
+const SubwayController = require('./controller/SubwayController');
 
-  play() {}
+class App {
+  #subwayCtrl;
+
+  constructor() {
+    this.#subwayCtrl = new SubwayController();
+  }
+
+  play() {
+    this.#subwayCtrl.randerMainPage();
+  }
 }
 
 const app = new App();
