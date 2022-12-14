@@ -1,74 +1,80 @@
 const { Console } = require('@woowacourse/mission-utils');
-const BaseballGame = require('../BaseballGame');
-const { GAME_VALUE, COMMAND } = require('../constants');
-const Validator = require('../Validator');
+
+const BaseballGame = require('../service/BaseballGame');
+
 const InputView = require('../views/InputView');
 const OutputView = require('../views/OutputView');
 
+const Validator = require('../utils/Validator');
+const { COMMAND, PROCESS } = require('../constants');
+
 class BaseballController {
-  #baseball;
-  #commandHandler;
+  #baseballGame;
 
   constructor() {
-    this.#baseball = new BaseballGame();
-    this.#commandHandler = {
-      [COMMAND.RESTART]: this.restartGame.bind(this),
-      [COMMAND.EXIT]: this.exitGame.bind(this),
-    };
+    this.#baseballGame = new BaseballGame();
   }
 
-  gameStart() {
-    OutputView.printGameStartMessage();
+  winningHandler = {
+    [PROCESS.WIN]: this.#gameOver.bind(this),
+    [PROCESS.FAIL]: this.#inputNumbers.bind(this),
+  };
 
-    this.inputNumbers();
+  commandHandler = {
+    [COMMAND.RESTART]: this.#restart.bind(this),
+    [COMMAND.EXIT]: this.#exitGame.bind(this),
+  };
+
+  startGame() {
+    OutputView.printStartMessage();
+
+    this.#inputNumbers();
   }
 
-  inputNumbers() {
-    InputView.askNumbers(this.handleUserNumbers.bind(this));
+  #inputNumbers() {
+    InputView.askNumbers(this.#validateNumbers.bind(this));
   }
 
-  handleUserNumbers(userNumbers) {
-    Validator.throwErrorIfInvalidNumbers(userNumbers);
+  #validateNumbers(numbers) {
+    Validator.throwErrorIfInvalidNumbers(numbers);
 
-    this.printResult([...userNumbers].map(Number));
+    this.#printResult([...numbers].map(Number));
   }
 
-  printResult(userNumbers) {
-    const strike = this.#baseball.getStrikeCount(userNumbers);
-    const ball = this.#baseball.getBallCount({ userNumbers, strike });
+  #printResult(numbers) {
+    const { strikeCount, ballCount, doesUserWin } =
+      this.#baseballGame.getResult(numbers);
+    const resultMessage = this.#baseballGame.getResultMessage(
+      strikeCount,
+      ballCount
+    );
+    OutputView.printResult(resultMessage);
 
-    OutputView.printResult({ strike, ball });
-
-    if (strike === GAME_VALUE.LENGTH) {
-      this.noticeUserWin();
-      return;
-    }
-    this.inputNumbers();
+    this.winningHandler[doesUserWin]();
   }
 
-  noticeUserWin() {
-    OutputView.printWinMessage();
+  #gameOver() {
+    OutputView.printWinningMessage();
 
-    this.inputRestartOrExit();
+    this.#inputRetryCommand();
   }
 
-  inputRestartOrExit() {
-    InputView.askRestartOrExit(this.handleRestartOrExit.bind(this));
+  #inputRetryCommand() {
+    InputView.askRetryCommand(this.#validateRetryCommand.bind(this));
   }
 
-  handleRestartOrExit(command) {
+  #validateRetryCommand(command) {
     Validator.throwErrorIfInvalidCommand(command);
 
-    this.#commandHandler[command]();
+    this.commandHandler[command]();
   }
 
-  restartGame() {
-    this.#baseball = new BaseballGame();
-
-    this.inputNumbers();
+  #restart() {
+    this.#baseballGame = new BaseballGame();
+    this.#inputNumbers();
   }
 
-  exitGame() {
+  #exitGame() {
     Console.close();
   }
 }

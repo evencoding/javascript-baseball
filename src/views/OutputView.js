@@ -1,19 +1,20 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { MESSAGE, RESULT } = require('../constants');
+
+const MESSAGE = {
+  START: '숫자 야구 게임을 시작합니다.',
+  WIN: '3개의 숫자를 모두 맞히셨습니다! 게임 종료',
+};
 
 const OutputView = {
-  printGameStartMessage() {
-    Console.print(MESSAGE.GAME_START);
+  printStartMessage() {
+    Console.print(MESSAGE.START);
   },
 
-  printResult({ strike, ball }) {
-    if (strike > 0 && ball > 0) Console.print(RESULT.both({ strike, ball }));
-    else if (strike + ball === 0) Console.print(RESULT.NOTHING);
-    else if (strike > 0) Console.print(RESULT.strike(strike));
-    else if (ball > 0) Console.print(RESULT.ball(ball));
+  printResult(resultMessage) {
+    Console.print(resultMessage);
   },
 
-  printWinMessage() {
+  printWinningMessage() {
     Console.print(MESSAGE.WIN);
   },
 };

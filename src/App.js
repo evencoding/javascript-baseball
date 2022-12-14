@@ -8,7 +8,7 @@ class App {
   }
 
   play() {
-    this.#baseballCtrl.gameStart();
+    this.#baseballCtrl.startGame();
   }
 }
 
