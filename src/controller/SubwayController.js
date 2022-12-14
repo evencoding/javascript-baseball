@@ -21,16 +21,43 @@ class SubwayController {
   }
 
   #validateMainFeature(feature) {
-    console.log(feature);
+    // validate feature
 
     this.#randerRoutePage();
   }
 
   #randerRoutePage() {
     OutputView.printRoutePage();
+
+    this.#inputFeature(FEATURES.ROUTE);
   }
 
-  #validateRouteFeature(feature) {}
+  #validateRouteFeature(feature) {
+    // validate feature
+
+    this.#inputStartStation();
+  }
+
+  #inputStartStation() {
+    InputView.askStartStation(this.#validateStartStation.bind(this));
+  }
+
+  #validateStartStation(station) {
+    // validate
+
+    console.log(station);
+    this.#inputDestination();
+  }
+
+  #inputDestination() {
+    InputView.askDestination(this.#validateDestination.bind(this));
+  }
+
+  #validateDestination(station) {
+    // validate
+
+    console.log(station);
+  }
 }
 
 module.exports = SubwayController;
