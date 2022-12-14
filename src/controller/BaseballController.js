@@ -6,6 +6,7 @@ const InputView = require('../views/InputView');
 const OutputView = require('../views/OutputView');
 
 const Validator = require('../utils/Validator');
+const { COMMAND, PROCESS } = require('../constants');
 
 class BaseballController {
   #baseballGame;
@@ -15,13 +16,13 @@ class BaseballController {
   }
 
   winningHandler = {
-    [true]: this.#gameOver.bind(this),
-    [false]: this.#inputNumbers.bind(this),
+    [PROCESS.WIN]: this.#gameOver.bind(this),
+    [PROCESS.FAIL]: this.#inputNumbers.bind(this),
   };
 
   commandHandler = {
-    1: this.#restart.bind(this),
-    2: this.#exitGame.bind(this),
+    [COMMAND.RESTART]: this.#restart.bind(this),
+    [COMMAND.EXIT]: this.#exitGame.bind(this),
   };
 
   startGame() {

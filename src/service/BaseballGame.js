@@ -1,3 +1,4 @@
+const { RESULT_MESSAGES } = require('../constants');
 const BaseballReferee = require('../models/BaseballReferee');
 
 const { generateRandomNumbers } = require('../utils/NumberGenerator');
@@ -22,11 +23,11 @@ class BaseballGame {
 
   getResultMessage(strikeCount, ballCount) {
     if (strikeCount > 0 && ballCount > 0) {
-      return `${ballCount}볼 ${strikeCount}스트라이크`;
+      return RESULT_MESSAGES.strikeAndBall(strikeCount, ballCount);
     }
-    if (strikeCount === 0 && ballCount === 0) return `낫싱`;
-    if (strikeCount > 0) return `${strikeCount}스트라이크`;
-    if (ballCount > 0) return `${ballCount}볼`;
+    if (strikeCount === 0 && ballCount === 0) return RESULT_MESSAGES.NOTHING;
+    if (strikeCount > 0) return RESULT_MESSAGES.onlyStrike(strikeCount);
+    if (ballCount > 0) return RESULT_MESSAGES.onlyBall(ballCount);
   }
 }
 
