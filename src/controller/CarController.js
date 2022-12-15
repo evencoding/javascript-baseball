@@ -24,7 +24,19 @@ class CarController {
     this.#onInputCarsName(carsName);
   }
 
-  #onInputCarsName(carsName) {}
+  #onInputCarsName(carsName) {
+    // Handle CarsName
+
+    this.#inputTryCount();
+  }
+
+  #inputTryCount() {
+    InputView.askTryCount(this.#validateTryCount.bind(this));
+  }
+
+  #validateTryCount(tryCount) {
+    console.log(tryCount);
+  }
 }
 
 module.exports = CarController;
