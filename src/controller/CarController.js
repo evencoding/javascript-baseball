@@ -35,8 +35,17 @@ class CarController {
   }
 
   #validateTryCount(tryCount) {
-    console.log(tryCount);
+    try {
+      Validator.throwErrorIfInvalidTryCount(tryCount);
+    } catch ({ message }) {
+      OutputView.printErrorMessage(message);
+      this.#inputTryCount();
+    }
+
+    this.#onInputTryCount(tryCount);
   }
+
+  #onInputTryCount(tryCount) {}
 }
 
 module.exports = CarController;
