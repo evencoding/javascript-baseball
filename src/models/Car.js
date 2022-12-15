@@ -7,12 +7,11 @@ class Car {
     this.#position = 0;
   }
 
-  getCarName() {
-    return this.#name;
-  }
-
-  getCarPosition() {
-    return this.#position;
+  getCarInfo() {
+    return {
+      name: this.#name,
+      position: this.#position,
+    };
   }
 
   move() {
