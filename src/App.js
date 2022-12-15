@@ -1,14 +1,14 @@
-const BaseballController = require('./controller/BaseballController');
+const CarController = require('./controller/CarController');
 
 class App {
-  #baseballCtrl;
+  #carCtrl;
 
   constructor() {
-    this.#baseballCtrl = new BaseballController();
+    this.#carCtrl = new CarController();
   }
 
   play() {
-    this.#baseballCtrl.gameStart();
+    this.#carCtrl.startGame();
   }
 }
 

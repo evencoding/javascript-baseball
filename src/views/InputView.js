@@ -1,13 +1,17 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { MESSAGE } = require('../constants');
+
+const MESSAGE = {
+  ASK_CARS_NAME: '\n자동차 이름을 5자 이하 콤마로 구분하여 입력해주세요.\n',
+  ASK_TRY_COUNT: '\n시도할 횟수를 입력해주세요.\n',
+};
 
 const InputView = {
-  askNumbers(callback) {
-    Console.readLine(MESSAGE.ASK_NUBMER, callback);
+  askCarsName(callback) {
+    Console.readLine(MESSAGE.ASK_CARS_NAME, callback);
   },
 
-  askRestartOrExit(callback) {
-    Console.readLine(MESSAGE.ASK_RESTART_OR_EXIT, callback);
+  askTryCount(callback) {
+    Console.readLine(MESSAGE.ASK_TRY_COUNT, callback);
   },
 };
 
