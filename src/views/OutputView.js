@@ -6,7 +6,7 @@ const MESSAGE = {
 
 const OutputView = {
   printErrorMessage(message) {
-    Console.print(message);
+    Console.print(`[ERROR] ${message}`);
   },
 
   printGameStartMessage() {
