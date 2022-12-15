@@ -1,8 +1,9 @@
 const { Random } = require('@woowacourse/mission-utils');
+const { GAME_VALUE } = require('../constants');
 
 const RandomNumberGenerator = {
   generateRandomNumber() {
-    return Random.pickNumberInRange(0, 9);
+    return Random.pickNumberInRange(GAME_VALUE.MIN_RANDOM_NUMBER, GAME_VALUE.MAX_RANDOM_NUMBER);
   },
 };
 

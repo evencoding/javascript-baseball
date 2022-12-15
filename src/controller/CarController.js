@@ -6,6 +6,7 @@ const InputView = require('../views/InputView');
 const OutputView = require('../views/OutputView');
 
 const Validator = require('../utils/Validator');
+const { REGEX } = require('../constants');
 
 class CarController {
   #carGame;
@@ -32,7 +33,7 @@ class CarController {
   }
 
   #onInputCarsName(carsName) {
-    const cars = carsName.replace(/\s/g, '').split(',');
+    const cars = carsName.replace(REGEX.SPACE, '').split(',');
     this.#carGame = new CarGame(cars);
 
     this.#inputTryCount();

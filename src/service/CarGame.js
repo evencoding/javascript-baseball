@@ -1,4 +1,6 @@
+const { GAME_VALUE } = require('../constants');
 const Car = require('../models/Car');
+
 const { generateRandomNumber } = require('../utils/RandomNumberGenerator');
 
 class CarGame {
@@ -21,7 +23,7 @@ class CarGame {
 
   #move(car) {
     const randomNumber = generateRandomNumber();
-    if (randomNumber >= 4) {
+    if (randomNumber >= GAME_VALUE.CONDITION_FOR_MOVING) {
       car.move();
     }
   }
