@@ -1,7 +1,11 @@
+const { Console } = require('@woowacourse/mission-utils');
+
 const CarGame = require('../service/CarGame');
-const Validator = require('../utils/Validator');
+
 const InputView = require('../views/InputView');
 const OutputView = require('../views/OutputView');
+
+const Validator = require('../utils/Validator');
 
 class CarController {
   #carGame;
@@ -50,14 +54,21 @@ class CarController {
   }
 
   #onInputTryCount(tryCount) {
-    // Handle TryCount
     this.#carGame.startRacing(tryCount);
 
     this.#printResult();
   }
 
   #printResult() {
-    const gameResult = this.#carGame.getGameResult();
+    const { movingInfo, winner } = this.#carGame.getGameResult();
+
+    OutputView.printGameResult(movingInfo, winner);
+
+    this.#exitGame();
+  }
+
+  #exitGame() {
+    Console.close();
   }
 }
 
