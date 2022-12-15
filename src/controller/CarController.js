@@ -1,8 +1,11 @@
+const CarGame = require('../service/CarGame');
 const Validator = require('../utils/Validator');
 const InputView = require('../views/InputView');
 const OutputView = require('../views/OutputView');
 
 class CarController {
+  #carGame;
+
   startGame() {
     OutputView.printGameStartMessage();
 
@@ -25,7 +28,8 @@ class CarController {
   }
 
   #onInputCarsName(carsName) {
-    // Handle CarsName
+    const cars = carsName.replace(/\s/g, '').split(',');
+    this.#carGame = new CarGame(cars);
 
     this.#inputTryCount();
   }
@@ -45,7 +49,16 @@ class CarController {
     this.#onInputTryCount(tryCount);
   }
 
-  #onInputTryCount(tryCount) {}
+  #onInputTryCount(tryCount) {
+    // Handle TryCount
+    this.#carGame.startRacing(tryCount);
+
+    this.#printResult();
+  }
+
+  #printResult() {
+    const gameResult = this.#carGame.getGameResult();
+  }
 }
 
 module.exports = CarController;
